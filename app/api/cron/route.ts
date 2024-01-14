@@ -9,7 +9,7 @@ export const maxDuration = 10
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export async function GET() {
+export async function GET(request: Request) {
     try {
         connectToDB()
 
@@ -40,7 +40,7 @@ export async function GET() {
 
                 const updatedProduct = await Product.findOneAndUpdate(
                     { url: product.url },
-                    product,
+                    product
                 )
 
                 //2. check each product's status and send email if necessary
@@ -68,7 +68,7 @@ export async function GET() {
 
 
 
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(`error in GET: ${error}`)
     }
 }
